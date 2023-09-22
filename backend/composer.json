@@ -1,0 +1,12 @@
+{
+  "name": "zelena6/projet-acl",
+  "autoload": {
+    "psr-4": {
+      "Robert\\ProjetAcl\\": "src/"
+    }
+  },
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "^1.6"
+  }
+}
