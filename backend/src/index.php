@@ -15,7 +15,8 @@ $app = AppFactory::create();
 
 // Définit une route pour la racine ("/")
 $app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Je suis ton serveur ! l'index.php");
+    $response->getBody()->write(json_encode(new Card(Color::Black, Shape::Clubs, Value::Two)));
+    $response = $response->withHeader("Content-Type", "application/json");
     return $response;
 });
 
