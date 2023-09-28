@@ -14,9 +14,14 @@ class Card
      * @param   Value   the value of the card
      * @return  Card    the new card
      */
-    function __construct(Color $color, Shape $shape, Value $value)
+    function __construct(Shape $shape, Value $value)
     {
-        $this->color = $color;
+        $this->color = match ($shape) {
+            Shape::Diamonds => Color::Black,
+            Shape::Spades => Color::Black,
+            Shape::Hearts => Color::Red,
+            Shape::Clubs => Color::Red,
+        };
         $this->shape = $shape;
         $this->value = $value;
     }
