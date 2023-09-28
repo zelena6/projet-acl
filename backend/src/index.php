@@ -20,5 +20,12 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $response;
 });
 
+
+$app->get('/player', function (Request $request, Response $response, $args) {
+    $response->getBody()->write(json_encode(new Player("test")));
+    $response = $response->withHeader("Content-Type", "application/json");
+    return $response;
+});
+
 // Lance l'application Slim
 $app->run();
