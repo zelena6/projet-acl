@@ -17,6 +17,8 @@ $app = AppFactory::create();
 $app->get('/', function (Request $request, Response $response, $args) {
     $response->getBody()->write(json_encode(new Card(Shape::Clubs, Value::Two)));
     $response = $response->withHeader("Content-Type", "application/json");
+    $d = new Deck();
+    print("<pre>" . print_r($d->getCards(), true) . "</pre>");
     return $response;
 });
 
