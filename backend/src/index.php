@@ -15,7 +15,7 @@ $app = AppFactory::create();
 
 // Définit une route pour la racine ("/")
 $app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write(json_encode(new Card(Shape::Clubs, Value::Two)));
+    $response->getBody()->write(json_encode(new Card(Shape::Clubs, Value::As)));
     $response = $response->withHeader("Content-Type", "application/json");
     $d = new Deck();
     print("<pre>" . print_r($d->getCards(), true) . "</pre>");
