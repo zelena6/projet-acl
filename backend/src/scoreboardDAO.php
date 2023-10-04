@@ -3,6 +3,9 @@ class ScoreboardDAO
 {
     public function __construct()
     {
+        $db = new SQLite3("database.db");
+        $db->exec("create table if not exists scoreboard (username text, score integer)");
+        // TODO: gérer erreur
     }
 
     /**
@@ -54,4 +57,3 @@ class ScoreboardDAO
         return $resu;
     }
 }
-
