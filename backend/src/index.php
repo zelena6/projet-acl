@@ -24,8 +24,12 @@ $app->get('/', function (Request $request, Response $response, $args) {
 $app->get('/player', function (Request $request, Response $response, $args) {
     $response->getBody()->write(json_encode(new Player("test")));
     $response = $response->withHeader("Content-Type", "application/json");
-    $d = new Deck();
-    print("<pre>" . print_r($d->getCards(), true) . "</pre>");
+    return $response;
+});
+
+$app->get('/game', function (Request $request, Response $response, $args) {
+    $response->getBody()->write(json_encode(new Game(3)));
+    $response = $response->withHeader("Content-Type", "application/json");
     return $response;
 });
 
