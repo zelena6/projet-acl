@@ -10,4 +10,22 @@ enum Value: int
     case Queen = 12;
     case King = 13;
     case As = 14;
+
+    public static function getScore(self $value): int
+    {
+        switch ($value) {
+            case self::Ten:
+                return 10;
+            case self::Valet:
+                return 2;
+            case self::Queen:
+                return 3;
+            case self::King:
+                return 4;
+            case self::As:
+                return 11;
+            default:
+                return 0; // Par défaut, le score est 0 pour les autres valeurs.
+        }
+    }
 }
