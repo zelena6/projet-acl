@@ -21,6 +21,9 @@ class WrongValueWrongColor implements Rule
      */
     public function execute(Card $a, Card $b): int
     {
-        return $a->value->value + $b->value->value;
+        $scoreA = Value::getScore($a->value);
+        $scoreB = Value::getScore($b->value);
+
+        return $scoreA + $scoreB;
     }
 }
