@@ -18,6 +18,9 @@ class GoodValueGoodColor implements Rule
      */
     public function execute(Card $a, Card $b): int
     {
-        return 2 * ($a->value->value + $b->value->value);
+        $scoreA = value::getScore($a->value);
+        $scoreB = value::getScore($b->value);
+
+        return 2 * ($scoreA + $scoreB);
     }
 }
