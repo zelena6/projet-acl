@@ -28,7 +28,7 @@ $app->get('/player', function (Request $request, Response $response, $args) {
 });
 
 $app->get('/game', function (Request $request, Response $response, $args) {
-    $response->getBody()->write(json_encode(new Game(3)));
+    $response->getBody()->write(json_encode(new Game(new Player("zelena"))));
     $response = $response->withHeader("Content-Type", "application/json");
     return $response;
 });

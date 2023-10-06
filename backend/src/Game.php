@@ -4,11 +4,11 @@ define("MAX_TURN", 5);
 
 class Game
 {
-    private int $turn;
-    private int $score;
+    public int $turn;
+    public int $score;
     private Rule $rule;
-    private Player $player;
-    private Deck $deck;
+    public Player $player;
+    public Deck $deck;
 
     // Constructor
     public function __construct(
