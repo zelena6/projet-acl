@@ -18,7 +18,8 @@ class ScoreboardDAO
     {
         $db = new SQLite3("database.db");
         $stmt = $db->prepare("INSERT INTO scoreboard (username, score) VALUES (?, ?)");
-        $stmt->bindParam(1, $player->getUsername(), SQLITE3_TEXT);
+        $username = $player->getUsername();
+        $stmt->bindParam(1, $username, SQLITE3_TEXT);
         $stmt->bindParam(2, $score, SQLITE3_INTEGER);
         $stmt->execute();
     }
@@ -48,11 +49,12 @@ class ScoreboardDAO
     public function findAll(): array
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("SELECT username, score, (SELECT count(*) FROM scoreboard s2 WHERE s2.username < s.username) + 1 as row FROM scoreboard s ORDER BY score DESC");
+        $stmt = $db->prepare("SELECT username, score, ROW_NUMBER() row FROM scoreboard s ORDER BY score DESC");
         $res = $stmt->execute();
         $resu = [];
         while ($arr = $res->fetchArray(SQLITE3_ASSOC)) {
-            $resu[$arr["row"]] = ["username" => $arr["username"], "score" => $arr["score"]];
+            print_r($arr);
+            // $resu[$arr["row"]] = ["username" => $arr["username"], "score" => $arr["score"]];
         }
         return $resu;
     }
