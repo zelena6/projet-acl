@@ -6,7 +6,7 @@
 class Deck
 {
     /** @var array Tableau de cartes dans le paquet. */
-    private array $cards;
+    public array $cards;
 
     /**
      * Constructeur de la classe Deck.
