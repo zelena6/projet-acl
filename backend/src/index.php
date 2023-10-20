@@ -28,13 +28,13 @@ $app->get('/player', function (Request $request, Response $response, $args) {
 });
 
 $app->get('/game', function (Request $request, Response $response, $args) {
-    // $response->getBody()->write(json_encode(new Game(new Player("zelena"))));
+    $response->getBody()->write(json_encode(new Game(0, 0, new Player("zelena"))));
     $response = $response->withHeader("Content-Type", "application/json");
     return $response;
 });
 
 $app->get('/test', function (Request $request, Response $response, $args) {
-    $g = new Game(0, 0);
+    $g = new Game(0, 0, new Player("zelena"));
     print($g->calculateScore());
     $response = $response->withHeader("Content-Type", "application/json");
     return $response;

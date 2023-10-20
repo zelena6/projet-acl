@@ -4,14 +4,16 @@ define("MAX_TURN", 5);
 
 class Game
 {
-    private int $turn;
-    private int $score;
+    public int $turn;
+    public int $score;
+    public Player $player;
 
     // Constructor
-    public function __construct(int $turn, int $score)
+    public function __construct(int $turn, int $score, Player $player)
     {
         $this->turn = $turn;
         $this->score = $score;
+        $this->player = $player;
     }
 
     // Getter for 'turn'
@@ -36,6 +38,16 @@ class Game
     public function setScore(int $score): void
     {
         $this->score = $score;
+    }
+
+    public function getPlayer(): Player
+    {
+        return $this->player;
+    }
+
+    public function setPlayer(Player $player): void
+    {
+        $this->player = $player;
     }
 
     public function saveScore(): void
