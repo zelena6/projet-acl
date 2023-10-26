@@ -6,15 +6,19 @@ class Game
 {
     public int $turn;
     public int $score;
-    public Player $player;
+    public ?Player $player;
+    public Deck $deck;
 
     // Constructor
-    public function __construct(int $turn, int $score, Player $player)
+    public function __construct(?Player $player = null)
     {
-        $this->turn = $turn;
-        $this->score = $score;
+        $this->turn = 0;
+        $this->score = 0;
         $this->player = $player;
+        $this->deck = new Deck();
     }
+
+
 
     // Getter for 'turn'
     public function getTurn(): int
