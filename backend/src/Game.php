@@ -16,6 +16,7 @@ class Game
         $this->score = 0;
         $this->player = $player;
         $this->deck = new Deck();
+        $this->deck->shuffle();
     }
 
 
@@ -61,7 +62,7 @@ class Game
         // print_r($res);
     }
 
-    public function calculateScore()
+    public function calculateScore(Card $a, Card $b)
     {
         $wrongValueWrongColor = new WrongValueWrongColor();
         $goodValueWrongColor = new GoodValueWrongColor();
@@ -70,6 +71,6 @@ class Game
         $wrongValueWrongColor->setNext($goodValueWrongColor);
         $goodValueWrongColor->setNext($goodValueGoodColor);
 
-        return $wrongValueWrongColor->handle(new Card(Shape::Clubs, Value::As), new Card(Shape::Clubs, Value::As));
+        return $wrongValueWrongColor->handle($a, $b);
     }
 }

@@ -33,11 +33,11 @@ $app->post("/game", function (Request $request, Response $response, $args) {
     $games = [];
 
     if (filesize("games.txt") > 0) {
-        $json = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
-        if ($json == false) {
+        $data = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
+        if ($data == false) {
             print("fread error");
         }
-        $games = json_decode($json, true);
+        $games = unserialize($data);
     }
 
     $resource = fopen("games.txt", "w");
@@ -48,7 +48,7 @@ $app->post("/game", function (Request $request, Response $response, $args) {
     $username = json_decode($request->getBody(), 1)["username"];
     $games[$username] = new Game(new Player($username));
     // array_push($games, [$username => new Game(new Player($username))]);
-    $write_res = fwrite($resource, json_encode($games));
+    $write_res = fwrite($resource, serialize($games));
     if ($write_res == false) {
         print("fwrite error");
     }
@@ -66,11 +66,11 @@ $app->get("/game/{username}", function (Request $request, Response $response, ar
 
     $games = [];
     if (filesize("games.txt") > 0) {
-        $json = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
-        if ($json == false) {
+        $data = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
+        if ($data == false) {
             print("fread error");
         }
-        $games = json_decode($json, true);
+        $games = unserialize($data);
     }
 
     // print_r($games[$username]);
@@ -89,13 +89,40 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
 
     $games = [];
     if (filesize("games.txt") > 0) {
-        $json = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
-        if ($json == false) {
+        $data = fread($resource, filesize("games.txt")); // + 1 pour éviter erreur
+        if ($data == false) {
             print("fread error");
         }
-        $games = json_decode($json, true);
+        $games = unserialize($data);
     }
     $game = $games[$username];
+    $response->getBody()->write(json_encode(
+        [
+            "cards" => [
+                $game->deck->cards[0],
+                $game->deck->cards[1]
+            ],
+            "score" => $game->calculateScore($game->deck->cards[0], $game->deck->cards[1])
+        ]
+    ));
+
+    $game->turn += 1;
+    unset($game->deck->cards[0]);
+    unset($game->deck->cards[1]);
+    $game->deck->cards = array_values($game->deck->cards);
+
+    $games[$username] = $game;
+
+    $resource = fopen("games.txt", "w");
+    if ($resource == false) {
+        print("fopen error");
+    }
+
+    $write_res = fwrite($resource, serialize($games));
+    if ($write_res == false) {
+        print("fwrite error");
+    }
+
     // renvoyer deux cartes
     // supprimer les deux cartes du paquet
     // calculer les points

@@ -12,7 +12,6 @@ class GoodValueWrongColor extends BaseRule
 {
     public function handle(Card $a, Card $b)
     {
-
         if (
             $this->next == null ||
             ($a->getValue() == $b->getValue()
@@ -23,7 +22,6 @@ class GoodValueWrongColor extends BaseRule
 
             return - ($scoreA + $scoreB);
         }
-
 
         return $this->next->handle($a, $b);
     }
