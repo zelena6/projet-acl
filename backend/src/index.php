@@ -96,13 +96,17 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
         $games = unserialize($data);
     }
     $game = $games[$username];
+
+    $score = $game->calculateScore($game->deck->cards[0], $game->deck->cards[1]);
+    $game->score += $score;
+
     $response->getBody()->write(json_encode(
         [
             "cards" => [
                 $game->deck->cards[0],
                 $game->deck->cards[1]
             ],
-            "score" => $game->calculateScore($game->deck->cards[0], $game->deck->cards[1])
+            "score" => $score
         ]
     ));
 
