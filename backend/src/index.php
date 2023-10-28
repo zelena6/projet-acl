@@ -144,5 +144,38 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
 });
 
 
+$app->get("/game/{username}/stop", function (Request $request, Response $response, array $args) {
+    $username = $args["username"];
+    $resource = fopen("games.txt", "r");
+    if ($resource == false) {
+        print("fopen error");
+    }
+
+    $games = [];
+    if (filesize("games.txt") > 0) {
+        $data = fread($resource, filesize("games.txt"));
+        if ($data == false) {
+            print("fread error");
+        }
+        $games = unserialize($data);
+    }
+    unset($games[$username]);
+
+    $resource = fopen("games.txt", "w");
+    if ($resource == false) {
+        print("fopen error");
+    }
+
+    $write_res = fwrite($resource, serialize($games));
+    if ($write_res == false) {
+        print("fwrite error");
+    }
+
+    $response = $response->withHeader("Content-Type", "application/json");
+
+    return $response;
+});
+
+
 // Lance l'application Slim
 $app->run();
