@@ -59,7 +59,9 @@ class Game
     {
         $db = new SQLite3("database.db");
         $stmt = $db->prepare("insert into scoreboard (username, score) values (?, ?)");
-        // print_r($res);
+        $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
+        $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
+        $stmt->execute();
     }
 
     public function calculateScore(Card $a, Card $b)

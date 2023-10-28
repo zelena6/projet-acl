@@ -106,6 +106,7 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
     $game = $games[$username];
 
     if ($game->turn == 5) {
+        $game->saveScore();
         unset($games[$username]); // supression partie
     } else {
         $score = $game->calculateScore($game->deck->cards[0], $game->deck->cards[1]);
@@ -138,8 +139,6 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
             print("fwrite error");
         }
     }
-
-
 
     // renvoyer deux cartes
     // supprimer les deux cartes du paquet
