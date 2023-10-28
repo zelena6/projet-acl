@@ -105,35 +105,41 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
     }
     $game = $games[$username];
 
-    $score = $game->calculateScore($game->deck->cards[0], $game->deck->cards[1]);
-    $game->score += $score;
+    if ($game->turn == 5) {
+        unset($games[$username]); // supression partie
+    } else {
+        $score = $game->calculateScore($game->deck->cards[0], $game->deck->cards[1]);
+        $game->score += $score;
 
-    $response->getBody()->write(json_encode(
-        [
-            "cards" => [
-                $game->deck->cards[0],
-                $game->deck->cards[1]
-            ],
-            "score" => $score
-        ]
-    ));
+        $response->getBody()->write(json_encode(
+            [
+                "cards" => [
+                    $game->deck->cards[0],
+                    $game->deck->cards[1]
+                ],
+                "score" => $score
+            ]
+        ));
 
-    $game->turn += 1;
-    unset($game->deck->cards[0]);
-    unset($game->deck->cards[1]);
-    $game->deck->cards = array_values($game->deck->cards);
+        $game->turn += 1;
+        unset($game->deck->cards[0]);
+        unset($game->deck->cards[1]);
+        $game->deck->cards = array_values($game->deck->cards);
 
-    $games[$username] = $game;
+        $games[$username] = $game;
 
-    $resource = fopen("games.txt", "w");
-    if ($resource == false) {
-        print("fopen error");
+        $resource = fopen("games.txt", "w");
+        if ($resource == false) {
+            print("fopen error");
+        }
+
+        $write_res = fwrite($resource, serialize($games));
+        if ($write_res == false) {
+            print("fwrite error");
+        }
     }
 
-    $write_res = fwrite($resource, serialize($games));
-    if ($write_res == false) {
-        print("fwrite error");
-    }
+
 
     // renvoyer deux cartes
     // supprimer les deux cartes du paquet
@@ -142,7 +148,6 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
 
     return $response;
 });
-
 
 $app->get("/game/{username}/stop", function (Request $request, Response $response, array $args) {
     $username = $args["username"];
