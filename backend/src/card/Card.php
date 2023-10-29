@@ -17,10 +17,10 @@ class Card
     function __construct(Shape $shape, Value $value)
     {
         $this->color = match ($shape) {
-            Shape::Diamonds => Color::Black,
+            Shape::Diamonds => Color::Red,
             Shape::Spades => Color::Black,
             Shape::Hearts => Color::Red,
-            Shape::Clubs => Color::Red,
+            Shape::Clubs => Color::Black,
         };
         $this->shape = $shape;
         $this->value = $value;
