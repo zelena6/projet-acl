@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['findall_38',['findAll',['../class_scoreboard_d_a_o.html#a0c25e3ca5ab04e4496d43d1c6337e3ce',1,'ScoreboardDAO']]],
-  ['findtopthree_39',['findTopThree',['../class_scoreboard_d_a_o.html#a0c3e1fa72ecaa2470db0697485baafdb',1,'ScoreboardDAO']]]
+  ['asstring_490',['asString',['../class_email.html#aa1a17ab79247b7e7d740bb55e13cab14',1,'Email']]]
 ];

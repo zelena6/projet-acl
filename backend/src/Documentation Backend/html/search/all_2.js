@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['card_2',['Card',['../class_card.html',1,'']]]
+  ['asstring_396',['asString',['../class_email.html#aa1a17ab79247b7e7d740bb55e13cab14',1,'Email']]]
 ];

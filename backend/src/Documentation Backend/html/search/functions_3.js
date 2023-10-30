@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['insert_44',['insert',['../class_scoreboard_d_a_o.html#ac1c89d5a71a367899fdfb8fa70b35232',1,'ScoreboardDAO']]]
+  ['findall_492',['findAll',['../class_scoreboard_d_a_o.html#a73a1b0348919b6755e4f69dcc70eba64',1,'ScoreboardDAO']]],
+  ['findtopthree_493',['findTopThree',['../class_scoreboard_d_a_o.html#a3d99762e539818f4db302d9ffdee38a9',1,'ScoreboardDAO']]],
+  ['fromstring_494',['fromString',['../class_email.html#aaf0240b933ae00d47806977c14088e67',1,'Email']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5f_5fconstruct_37',['__construct',['../class_card.html#aa96388211b6d3fd8c6ddb39f9e9cffaa',1,'Card\__construct()'],['../class_deck.html#a39bfd246f980ca7ffe1d7b7e72edc52f',1,'Deck\__construct()']]]
+  ['_5f_5fconstruct_489',['__construct',['../class_base_rule.html#a095c5d389db211932136b53f25f39685',1,'BaseRule\__construct()'],['../class_card.html#ab3f0619196196bc555944ea41110903d',1,'Card\__construct()'],['../class_deck.html#a095c5d389db211932136b53f25f39685',1,'Deck\__construct()'],['../class_game.html#a6328ce42cbbbe3f3790bd79e1881d40b',1,'Game\__construct()'],['../class_player.html#a9759763f920e8eac73fafea74b82c4b6',1,'Player\__construct()'],['../class_scoreboard_d_a_o.html#a095c5d389db211932136b53f25f39685',1,'ScoreboardDAO\__construct()']]]
 ];

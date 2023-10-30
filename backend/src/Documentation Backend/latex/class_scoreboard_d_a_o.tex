@@ -3,42 +3,53 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}{insert}} (\mbox{\hyperlink{class_player}{Player}} \$player, int \$score)
+\mbox{\hyperlink{class_scoreboard_d_a_o_a095c5d389db211932136b53f25f39685}{\+\_\+\+\_\+construct}} ()
 \item 
-\mbox{\hyperlink{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}{find\+Top\+Three}} ()
+\mbox{\hyperlink{class_scoreboard_d_a_o_aefaad9f4d516d8589e5fc63970fac8f5}{insert}} (\mbox{\hyperlink{class_player}{Player}} \$player, int \$score)
 \item 
-\mbox{\hyperlink{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}{find\+All}} ()
+\mbox{\hyperlink{class_scoreboard_d_a_o_a3d99762e539818f4db302d9ffdee38a9}{find\+Top\+Three}} ()
+\item 
+\mbox{\hyperlink{class_scoreboard_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_scoreboard_d_a_o_a095c5d389db211932136b53f25f39685}\label{class_scoreboard_d_a_o_a095c5d389db211932136b53f25f39685}} 
+\index{ScoreboardDAO@{ScoreboardDAO}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ScoreboardDAO@{ScoreboardDAO}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}\label{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}} 
+\mbox{\Hypertarget{class_scoreboard_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}\label{class_scoreboard_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}} 
 \index{ScoreboardDAO@{ScoreboardDAO}!findAll@{findAll}}
 \index{findAll@{findAll}!ScoreboardDAO@{ScoreboardDAO}}
 \doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
-{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::find\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily find\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Récupère tous les scores de la base de données.
 
 \begin{DoxyReturn}{Returns}
 array Un tableau associatif contenant tous les scores. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}\label{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}} 
+\mbox{\Hypertarget{class_scoreboard_d_a_o_a3d99762e539818f4db302d9ffdee38a9}\label{class_scoreboard_d_a_o_a3d99762e539818f4db302d9ffdee38a9}} 
 \index{ScoreboardDAO@{ScoreboardDAO}!findTopThree@{findTopThree}}
 \index{findTopThree@{findTopThree}!ScoreboardDAO@{ScoreboardDAO}}
 \doxysubsubsection{\texorpdfstring{findTopThree()}{findTopThree()}}
-{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::find\+Top\+Three (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily find\+Top\+Three (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Récupère les trois meilleurs scores de la base de données.
 
 \begin{DoxyReturn}{Returns}
 array Un tableau associatif contenant les trois meilleurs scores. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}\label{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}} 
+\mbox{\Hypertarget{class_scoreboard_d_a_o_aefaad9f4d516d8589e5fc63970fac8f5}\label{class_scoreboard_d_a_o_aefaad9f4d516d8589e5fc63970fac8f5}} 
 \index{ScoreboardDAO@{ScoreboardDAO}!insert@{insert}}
 \index{insert@{insert}!ScoreboardDAO@{ScoreboardDAO}}
 \doxysubsubsection{\texorpdfstring{insert()}{insert()}}
-{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}}}]{\$player,  }\item[{int}]{\$score }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}}}]{\$player,  }\item[{int}]{\$score }\end{DoxyParamCaption})}
 
 Insère un joueur et son score dans la base de données.
 
@@ -49,8 +60,16 @@ Insère un joueur et son score dans la base de données.
 int & {\em \$score} & Le score à enregistrer. \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{class_scoreboard_d_a_o_aefaad9f4d516d8589e5fc63970fac8f5_cgraph}
+\end{center}
+\end{figure}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-scoreboard\+D\+A\+O.\+php\end{DoxyCompactItemize}
+\mbox{\hyperlink{scoreboard_d_a_o_8php}{scoreboard\+D\+A\+O.\+php}}\end{DoxyCompactItemize}
