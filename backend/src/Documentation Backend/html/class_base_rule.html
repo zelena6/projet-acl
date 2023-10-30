@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet-ACL: BaseRule Class Reference</title>
+<title>Projet-ACL Backend: BaseRule Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet-ACL
+   <div id="projectname">Projet-ACL Backend
    </div>
   </td>
  </tr>
@@ -73,22 +73,22 @@ Inheritance diagram for BaseRule:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_base_rule__inherit__graph.png" border="0" usemap="#_base_rule_inherit__map" alt="Inheritance graph"/></div>
 <map name="_base_rule_inherit__map" id="_base_rule_inherit__map">
-<area shape="rect" title=" " alt="" coords="214,80,293,107"/>
-<area shape="rect" href="class_good_value_good_color.html" title=" " alt="" coords="5,155,152,181"/>
-<area shape="rect" href="class_good_value_wrong_color.html" title=" " alt="" coords="177,155,330,181"/>
-<area shape="rect" href="class_wrong_value_wrong_color.html" title=" " alt="" coords="354,155,513,181"/>
-<area shape="rect" href="interface_handler.html" title=" " alt="" coords="220,5,287,32"/>
+<area shape="rect" title=" " alt="" coords="198,145,309,252"/>
+<area shape="rect" href="class_good_value_good_color.html" title=" " alt="" coords="5,300,152,377"/>
+<area shape="rect" href="class_good_value_wrong_color.html" title=" " alt="" coords="177,300,330,377"/>
+<area shape="rect" href="class_wrong_value_wrong_color.html" title=" " alt="" coords="354,300,513,377"/>
+<area shape="rect" href="interface_handler.html" title=" " alt="" coords="209,5,297,97"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <div class="dynheader">
 Collaboration diagram for BaseRule:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_base_rule__coll__graph.png" border="0" usemap="#_base_rule_coll__map" alt="Collaboration graph"/></div>
 <map name="_base_rule_coll__map" id="_base_rule_coll__map">
-<area shape="rect" title=" " alt="" coords="5,95,84,121"/>
-<area shape="rect" href="interface_handler.html" title=" " alt="" coords="11,5,78,32"/>
+<area shape="rect" title=" " alt="" coords="5,160,116,267"/>
+<area shape="rect" href="interface_handler.html" title=" " alt="" coords="17,5,105,97"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,7 +104,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a584682f0d9629f243edd88db1307cc1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_handler.html">Handler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_rule.html#a584682f0d9629f243edd88db1307cc1d">$next</a> = null</td></tr>
 <tr class="separator:a584682f0d9629f243edd88db1307cc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classe qui implémente <a class="el" href="class_base_rule.html">BaseRule</a> </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a095c5d389db211932136b53f25f39685"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a095c5d389db211932136b53f25f39685">&#9670;&nbsp;</a></span>__construct()</h2>
 
@@ -119,6 +121,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructeur par défaut </p>
 
 </div>
 </div>
@@ -156,10 +159,18 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Essaye d'appliquer la règle, et si n'y arrive pas l'applique au prochain expert</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype"><a class="el" href="class_card.html">Card</a></td><td class="paramname">$a</td><td>La première carte </td></tr>
+    <tr><td class="paramtype"><a class="el" href="class_card.html">Card</a></td><td class="paramname">$b</td><td>La deuxième carte </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="interface_handler.html#a6c856e726cf08a8cab7892278381ebc6">Handler</a>.</p>
 
-<p>Reimplemented in <a class="el" href="class_good_value_wrong_color.html#a6c856e726cf08a8cab7892278381ebc6">GoodValueWrongColor</a>, <a class="el" href="class_wrong_value_wrong_color.html#a6c856e726cf08a8cab7892278381ebc6">WrongValueWrongColor</a>, and <a class="el" href="class_good_value_good_color.html#a6c856e726cf08a8cab7892278381ebc6">GoodValueGoodColor</a>.</p>
+<p>Reimplemented in <a class="el" href="class_good_value_good_color.html#a6c856e726cf08a8cab7892278381ebc6">GoodValueGoodColor</a>, <a class="el" href="class_good_value_wrong_color.html#a6c856e726cf08a8cab7892278381ebc6">GoodValueWrongColor</a>, and <a class="el" href="class_wrong_value_wrong_color.html#a6c856e726cf08a8cab7892278381ebc6">WrongValueWrongColor</a>.</p>
 
 </div>
 </div>
@@ -173,11 +184,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">setNext </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_handler.html">Handler</a>&#160;</td>
-          <td class="paramname"><em>$next</em></td><td>)</td>
+          <td class="paramname"><em>$h</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sert pour mettre le prochain maillon</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype"><a class="el" href="interface_handler.html">Handler</a></td><td class="paramname">$h</td><td>Le maillon suivant </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="interface_handler.html#ac895eeddc59aec721b3840cfae4785a2">Handler</a>.</p>
 

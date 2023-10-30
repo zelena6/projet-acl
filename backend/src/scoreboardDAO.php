@@ -1,6 +1,15 @@
 <?php
+
+/**
+ * Classe ScoreboardDAO
+ * 
+ * Sert pour gérer la base de données
+ */
 class ScoreboardDAO
 {
+    /**
+     * Crée la base de données
+     */
     public function __construct()
     {
         $db = new SQLite3("database.db");

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Classe Carte
+ * 
+ * Une carte possède une couleur, une forme et une valeur
+ */
 class Card
 {
     public Color $color;

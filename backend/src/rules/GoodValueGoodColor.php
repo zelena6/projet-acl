@@ -5,6 +5,7 @@
  *
  * Cette classe implémente l'interface Rule et définit une règle de comparaison
  * basée sur la valeur et la couleur des cartes.
+ * 
  */
 class GoodValueGoodColor extends BaseRule
 {

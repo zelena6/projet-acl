@@ -1,6 +1,5 @@
 <map id="GoodValueWrongColor" name="GoodValueWrongColor">
-<area shape="rect" id="node1" title=" " alt="" coords="5,171,159,197"/>
-<area shape="rect" id="node2" title=" " alt="" coords="28,95,77,121"/>
-<area shape="rect" id="node3" href="$class_base_rule.html" title=" " alt="" coords="101,95,180,121"/>
-<area shape="rect" id="node4" href="$interface_handler.html" title=" " alt="" coords="106,5,173,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,316,159,393"/>
+<area shape="rect" id="node2" href="$class_base_rule.html" title=" " alt="" coords="27,160,137,267"/>
+<area shape="rect" id="node3" href="$interface_handler.html" title=" " alt="" coords="38,5,126,97"/>
 </map>

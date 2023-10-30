@@ -15,7 +15,7 @@ Collaboration diagram for Base\+Rule\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=139pt]{class_base_rule__coll__graph}
+\includegraphics[width=163pt]{class_base_rule__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -34,6 +34,9 @@ Collaboration diagram for Base\+Rule\+:\nopagebreak
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Classe qui implémente \mbox{\hyperlink{class_base_rule}{Base\+Rule}} 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_base_rule_a095c5d389db211932136b53f25f39685}\label{class_base_rule_a095c5d389db211932136b53f25f39685}} 
 \index{BaseRule@{BaseRule}!\_\_construct@{\_\_construct}}
@@ -41,7 +44,7 @@ Collaboration diagram for Base\+Rule\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
 {\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
+Constructeur par défaut 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_base_rule_a6c856e726cf08a8cab7892278381ebc6}\label{class_base_rule_a6c856e726cf08a8cab7892278381ebc6}} 
@@ -50,20 +53,36 @@ Collaboration diagram for Base\+Rule\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{handle()}{handle()}}
 {\footnotesize\ttfamily handle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}}]{\$a,  }\item[{\mbox{\hyperlink{class_card}{Card}}}]{\$b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
 
+Essaye d\textquotesingle{}appliquer la règle, et si n\textquotesingle{}y arrive pas l\textquotesingle{}applique au prochain expert
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{class_card}{Card}} & {\em \$a} & La première carte \\
+\hline
+\mbox{\hyperlink{class_card}{Card}} & {\em \$b} & La deuxième carte \\
+\hline
+\end{DoxyParams}
 
 
 Implements \mbox{\hyperlink{interface_handler_a6c856e726cf08a8cab7892278381ebc6}{Handler}}.
 
 
 
-Reimplemented in \mbox{\hyperlink{class_good_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Wrong\+Color}}, \mbox{\hyperlink{class_wrong_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Wrong\+Value\+Wrong\+Color}}, and \mbox{\hyperlink{class_good_value_good_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Good\+Color}}.
+Reimplemented in \mbox{\hyperlink{class_good_value_good_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Good\+Color}}, \mbox{\hyperlink{class_good_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Wrong\+Color}}, and \mbox{\hyperlink{class_wrong_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Wrong\+Value\+Wrong\+Color}}.
 
 \mbox{\Hypertarget{class_base_rule_a42e49d1c96b5ceeee295fce71a13c951}\label{class_base_rule_a42e49d1c96b5ceeee295fce71a13c951}} 
 \index{BaseRule@{BaseRule}!setNext@{setNext}}
 \index{setNext@{setNext}!BaseRule@{BaseRule}}
 \doxysubsubsection{\texorpdfstring{setNext()}{setNext()}}
-{\footnotesize\ttfamily set\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_handler}{Handler}}}]{\$next }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily set\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_handler}{Handler}}}]{\$h }\end{DoxyParamCaption})}
 
+Sert pour mettre le prochain maillon
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{interface_handler}{Handler}} & {\em \$h} & Le maillon suivant \\
+\hline
+\end{DoxyParams}
 
 
 Implements \mbox{\hyperlink{interface_handler_ac895eeddc59aec721b3840cfae4785a2}{Handler}}.

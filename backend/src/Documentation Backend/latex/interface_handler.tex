@@ -9,6 +9,15 @@ Inheritance diagram for Handler\+:\nopagebreak
 \includegraphics[width=350pt]{interface_handler__inherit__graph}
 \end{center}
 \end{figure}
+
+
+Collaboration diagram for Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{interface_handler__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,6 +27,9 @@ Inheritance diagram for Handler\+:\nopagebreak
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Chaîne de responsabilié pour gérer les différentes règles 
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{interface_handler_a6c856e726cf08a8cab7892278381ebc6}\label{interface_handler_a6c856e726cf08a8cab7892278381ebc6}} 
 \index{Handler@{Handler}!handle@{handle}}
@@ -25,9 +37,18 @@ Inheritance diagram for Handler\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{handle()}{handle()}}
 {\footnotesize\ttfamily handle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}}]{\$a,  }\item[{\mbox{\hyperlink{class_card}{Card}}}]{\$b }\end{DoxyParamCaption})}
 
+Essaye d\textquotesingle{}appliquer la règle, et si n\textquotesingle{}y arrive pas l\textquotesingle{}applique au prochain expert
 
 
-Implemented in \mbox{\hyperlink{class_base_rule_a6c856e726cf08a8cab7892278381ebc6}{Base\+Rule}}, \mbox{\hyperlink{class_good_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Wrong\+Color}}, \mbox{\hyperlink{class_wrong_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Wrong\+Value\+Wrong\+Color}}, and \mbox{\hyperlink{class_good_value_good_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Good\+Color}}.
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{class_card}{Card}} & {\em \$a} & La première carte \\
+\hline
+\mbox{\hyperlink{class_card}{Card}} & {\em \$b} & La deuxième carte \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_base_rule_a6c856e726cf08a8cab7892278381ebc6}{Base\+Rule}}, \mbox{\hyperlink{class_good_value_good_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Good\+Color}}, \mbox{\hyperlink{class_good_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Good\+Value\+Wrong\+Color}}, and \mbox{\hyperlink{class_wrong_value_wrong_color_a6c856e726cf08a8cab7892278381ebc6}{Wrong\+Value\+Wrong\+Color}}.
 
 \mbox{\Hypertarget{interface_handler_ac895eeddc59aec721b3840cfae4785a2}\label{interface_handler_ac895eeddc59aec721b3840cfae4785a2}} 
 \index{Handler@{Handler}!setNext@{setNext}}
@@ -35,6 +56,13 @@ Implemented in \mbox{\hyperlink{class_base_rule_a6c856e726cf08a8cab7892278381ebc
 \doxysubsubsection{\texorpdfstring{setNext()}{setNext()}}
 {\footnotesize\ttfamily set\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_handler}{Handler}}}]{\$h }\end{DoxyParamCaption})}
 
+Sert pour mettre le prochain maillon
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{interface_handler}{Handler}} & {\em \$h} & Le maillon suivant \\
+\hline
+\end{DoxyParams}
 
 
 Implemented in \mbox{\hyperlink{class_base_rule_a42e49d1c96b5ceeee295fce71a13c951}{Base\+Rule}}.

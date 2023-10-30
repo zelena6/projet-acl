@@ -2,6 +2,11 @@
 
 define("MAX_TURN", 5);
 
+/**
+ * Classe Game
+ * 
+ * Contient les propriétés d'une partie (nombre de tours, les cartes, ...)
+ */
 class Game
 {
     public int $turn;
@@ -45,16 +50,25 @@ class Game
         $this->score = $score;
     }
 
+    /**
+     * Getteur du joueur
+     */
     public function getPlayer(): Player
     {
         return $this->player;
     }
 
+    /**
+     * Setteur du joueur
+     */
     public function setPlayer(Player $player): void
     {
         $this->player = $player;
     }
 
+    /**
+     * Sauvegarde le score dans la base de données
+     */
     public function saveScore(): void
     {
         $db = new SQLite3("database.db");
@@ -64,6 +78,14 @@ class Game
         $stmt->execute();
     }
 
+    /**
+     * Calcul le score de 2 cartes en utilisant la chaîne de responsabilité
+     * 
+     * @param Card $a La première carte
+     * @param Card $b La deuxième carte
+     * 
+     * @return int Le score
+     */
     public function calculateScore(Card $a, Card $b)
     {
         $wrongValueWrongColor = new WrongValueWrongColor();

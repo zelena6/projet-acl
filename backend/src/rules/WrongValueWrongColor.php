@@ -6,7 +6,6 @@
  * Cette classe représente une règle pour comparer deux cartes en fonction de leurs valeurs.
  * Elle implémente l'interface Rule et définit la méthode execute pour la règle.
  *
- * @implements Rule
  */
 class WrongValueWrongColor extends BaseRule
 {
