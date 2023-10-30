@@ -1,0 +1,56 @@
+\hypertarget{class_scoreboard_d_a_o}{}\doxysection{Scoreboard\+D\+AO Class Reference}
+\label{class_scoreboard_d_a_o}\index{ScoreboardDAO@{ScoreboardDAO}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}{insert}} (\mbox{\hyperlink{class_player}{Player}} \$player, int \$score)
+\item 
+\mbox{\hyperlink{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}{find\+Top\+Three}} ()
+\item 
+\mbox{\hyperlink{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}{find\+All}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}\label{class_scoreboard_d_a_o_a0c25e3ca5ab04e4496d43d1c6337e3ce}} 
+\index{ScoreboardDAO@{ScoreboardDAO}!findAll@{findAll}}
+\index{findAll@{findAll}!ScoreboardDAO@{ScoreboardDAO}}
+\doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
+{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::find\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Récupère tous les scores de la base de données.
+
+\begin{DoxyReturn}{Returns}
+array Un tableau associatif contenant tous les scores. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}\label{class_scoreboard_d_a_o_a0c3e1fa72ecaa2470db0697485baafdb}} 
+\index{ScoreboardDAO@{ScoreboardDAO}!findTopThree@{findTopThree}}
+\index{findTopThree@{findTopThree}!ScoreboardDAO@{ScoreboardDAO}}
+\doxysubsubsection{\texorpdfstring{findTopThree()}{findTopThree()}}
+{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::find\+Top\+Three (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Récupère les trois meilleurs scores de la base de données.
+
+\begin{DoxyReturn}{Returns}
+array Un tableau associatif contenant les trois meilleurs scores. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}\label{class_scoreboard_d_a_o_ac1c89d5a71a367899fdfb8fa70b35232}} 
+\index{ScoreboardDAO@{ScoreboardDAO}!insert@{insert}}
+\index{insert@{insert}!ScoreboardDAO@{ScoreboardDAO}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily Scoreboard\+D\+A\+O\+::insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}}}]{\$player,  }\item[{int}]{\$score }\end{DoxyParamCaption})}
+
+Insère un joueur et son score dans la base de données.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\hyperlink{class_player}{Player}} & {\em \$player} & Le joueur à insérer. \\
+\hline
+int & {\em \$score} & Le score à enregistrer. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+scoreboard\+D\+A\+O.\+php\end{DoxyCompactItemize}
