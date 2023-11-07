@@ -13,11 +13,12 @@
           id="pseudo"
           placeholder="Pseudo"
           v-model="username"
+          @keyup.enter="startGame"
         />
       </div>
       <div class="col-12" v-if="!showRules">
         <router-link :to="'/game/' + username + '/play'">
-          <button class="btn btn-primary btn-lg btn-block" @click="createGame">
+          <button class="btn btn-primary btn-lg btn-block" @click="startGame">
             Jouer
           </button>
         </router-link>
@@ -61,7 +62,7 @@ export default defineComponent({
 
     const router = useRouter();
 
-    const createGame = () => {
+    const startGame = () => {
       const usernameValue = username.value;
       router.push({ name: 'game', params: { username: usernameValue } });
 
@@ -92,9 +93,9 @@ export default defineComponent({
 
     return {
       serverResponse,
-      createGame,
       username,
       showRules,
+      startGame,
     };
   },
 });
