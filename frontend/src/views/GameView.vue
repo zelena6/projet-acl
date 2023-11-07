@@ -15,7 +15,10 @@
         @close-rules="showRulesDialog = false"
       />
     </div>
-    <div class="container text-center align-items mt-3" v-if="!showRulesDialog">
+    <div
+      class="container text-center align-items mt-3"
+      v-show="!showRulesDialog"
+    >
       <!-- Header Row -->
       <div class="row text-center align-items-center mb-5">
         <div class="col">

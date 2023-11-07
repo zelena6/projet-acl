@@ -6,7 +6,7 @@
       <div class="col-12" v-if="!showRules">
         <h1>Belette</h1>
       </div>
-      <div class="col-12 mt-2" v-if="!showRules">
+      <div class="col-12 mt-2" v-show="!showRules">
         <input
           type="text"
           class="form-control text-center mx-auto w-25"
