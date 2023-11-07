@@ -14,6 +14,13 @@ enum Value: int
     public static function getScore(self $value): int
     {
         switch ($value) {
+
+            case self::Seven:
+                return 7;
+            case self::Height:
+                return 8;
+            case self::Nine:
+                return 9;
             case self::Ten:
                 return 10;
             case self::Valet:

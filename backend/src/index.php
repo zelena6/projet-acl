@@ -149,6 +149,7 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
 });
 
 $app->get("/game/{username}/stop", function (Request $request, Response $response, array $args) {
+    // enregistre quand même le score à faire la condition ds front tour 5
     $username = $args["username"];
     $resource = fopen("games.txt", "r");
     if ($resource == false) {

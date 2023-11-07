@@ -1,48 +1,80 @@
 <template>
-  <div class="container text-center align-items mt-3">
-    <!-- Header Row -->
-    <div class="row text-center align-items-center mb-5">
-      <div class="col">
-        <h4>Tour {{ tour }}</h4>
-      </div>
-      <div class="col">
-        <h4>{{ score }}</h4>
-      </div>
-      <div class="col">
-        <button class="btn btn-danger" @click="handleAbandonnerClick">
-          Abandonner
-        </button>
-      </div>
+  <div id="game" style="display: ">
+    <div class="container text-center align-items mt-3">
+      <button
+        id="btnRegle"
+        class="btn btn-primary btn-lg"
+        style="margin-bottom: 15%"
+        @click="showRulesDialog = true"
+        v-if="!showRulesDialog"
+      >
+        Règles du jeu
+      </button>
+      <RulesDialog
+        v-if="showRulesDialog"
+        @close-rules="showRulesDialog = false"
+      />
     </div>
+    <div class="container text-center align-items mt-3" v-if="!showRulesDialog">
+      <!-- Header Row -->
+      <div class="row text-center align-items-center mb-5">
+        <div class="col">
+          <h4>Tour {{ tour }}</h4>
+        </div>
+        <div class="col">
+          <h4>{{ score }}</h4>
+        </div>
+        <div class="col">
+          <button class="btn btn-danger" @click="handleAbandonnerClick">
+            Abandonner
+          </button>
+        </div>
+      </div>
 
-    <!-- Image Rows -->
-    <div class="row mb-5">
-      <div class="col-md-6">
-        <img
-          id="card1"
-          src="../assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png"
-          @click="handleImageClick1"
-          class="img-fluid img-thumbnail"
-        />
+      <!-- Image Rows -->
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <img
+            id="card1"
+            src="../assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png"
+            @click="handleImageClick(1)"
+            class="img-fluid img-thumbnail"
+          />
+        </div>
+        <div class="col-md-6">
+          <img
+            id="card2"
+            src="../assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png"
+            @click="handleImageClick(2)"
+            class="img-fluid img-thumbnail"
+          />
+        </div>
       </div>
-      <div class="col-md-6">
-        <img
-          id="card2"
-          src="../assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png"
-          @click="handleImageClick2"
-          class="img-fluid img-thumbnail"
-        />
-      </div>
-    </div>
 
-    <!-- Button Row -->
-    <div class="row justify-content-center mt-4 mb-3">
-      <div class="col">
-        <button class="btn btn-primary btn-lg" @click="drawTwoCards">
-          Piocher 2 cartes
-        </button>
+      <!-- Button Row -->
+      <div class="row justify-content-center mt-4 mb-3">
+        <div class="col">
+          <button
+            id="btnPiocher"
+            class="btn btn-primary btn-lg"
+            @click="drawTwoCards"
+            :disabled="true"
+          >
+            Piocher 2
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div id="end-view" style="display: none">
+    <div class="container text-center align-items mt-3 mb-3">
+      <h4>Tour : {{ tour }}</h4>
+      <h4>Score : {{ score }}</h4>
+    </div>
+    <router-link :to="'/'">
+      <button class="btn btn-primary btn-lg btn-block">Continuer</button>
+    </router-link>
   </div>
 </template>
 
@@ -50,6 +82,7 @@
 import { defineComponent } from 'vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import RulesDialog from '../components/Rules.vue';
 
 export default defineComponent({
   name: 'GameView',
@@ -57,8 +90,15 @@ export default defineComponent({
     return {
       score: 0,
       tour: 1,
-      donneesTour: [],
+      card1: false,
+      card2: false,
+      card1Clickable: true,
+      card2Clickable: true,
+      showRulesDialog: false,
     };
+  },
+  components: {
+    RulesDialog,
   },
   setup() {
     const serverResponse = ref('');
@@ -66,102 +106,95 @@ export default defineComponent({
     const username = route.params.username;
 
     const fetchServerData = async () => {
-      try {
-        const response = await fetch(
-          'http://localhost:8888/game/' + username + '/play'
-        );
-        if (response.ok) {
-          const data = await response.text();
-          serverResponse.value = data;
-        } else {
-          throw new Error('Erreur de connexion !');
+      let retries = 3;
+      while (retries > 0) {
+        try {
+          const response = await fetch(
+            'http://localhost:8888/game/' + username + '/play'
+          );
+          if (response.ok) {
+            const data = await response.text();
+            serverResponse.value = data;
+            break;
+          } else {
+            throw new Error('Erreur de connexion !');
+          }
+        } catch (error) {
+          console.error('Erreur de connexion !');
+          console.error(error);
+          retries--;
         }
-      } catch (error) {
-        console.error('Erreur de connexion !');
-        console.error(error);
       }
     };
 
-    fetchServerData(); // Appel initial lors de la création du composant
+    fetchServerData();
 
     return {
       serverResponse,
       username,
-      fetchServerData, // Ajoutez fetchServerData aux données renvoyées par le setup
+      fetchServerData,
     };
   },
 
   methods: {
-    handleAbandonnerClick() {
-      // Gérer l'événement de clic sur le bouton Abandonner
-    },
-    async handleImageClick1() {
-      const dataOfServerResponse = JSON.parse(this.serverResponse);
+    handleAbandonnerClick() {},
 
-      const card1 = dataOfServerResponse.cards[0];
-      let card1Value = card1.value;
+    async handleImageClick(cardNumber) {
+      if (this.tour <= 5 && this['card' + cardNumber + 'Clickable']) {
+        const dataOfServerResponse = JSON.parse(this.serverResponse);
 
-      switch (card1Value) {
-        case 11:
-          card1Value = 'J';
-          break;
-        case 12:
-          card1Value = 'Q';
-          break;
-        case 13:
-          card1Value = 'K';
-          break;
-        case 14:
-          card1Value = 'A';
-          break;
-        // Ajoutez d'autres cas au besoin
+        const card = dataOfServerResponse.cards[cardNumber - 1]; // Utilisez cardNumber pour sélectionner la carte 1 ou 2
+        let cardValue = card.value;
+
+        switch (cardValue) {
+          case 11:
+            cardValue = 'J';
+            break;
+          case 12:
+            cardValue = 'Q';
+            break;
+          case 13:
+            cardValue = 'K';
+            break;
+          case 14:
+            cardValue = 'A';
+            break;
+        }
+
+        const cardShape = card.shape;
+        const firstLetter = cardShape.charAt(0).toUpperCase();
+        const restOfString = cardShape.slice(1);
+        const cardShapeCapitalized = firstLetter + restOfString;
+
+        const cardImage = 'card' + cardShapeCapitalized + cardValue + '.png';
+        document.getElementById('card' + cardNumber).src =
+          '../../src/assets/boardgamePack_v2/PNG/Cards/' + cardImage;
+
+        if (cardNumber === 1) {
+          this.card1 = true;
+          this.card1Clickable = false;
+        } else if (cardNumber === 2) {
+          this.card2 = true;
+          this.card2Clickable = false;
+        }
+
+        if (this.card1 && this.card2) {
+          if (this.tour == 1) {
+            this.score = dataOfServerResponse.score;
+          } else {
+            this.score += dataOfServerResponse.score;
+          }
+          document.getElementById('btnPiocher').disabled = false;
+
+          if (this.tour === 5) {
+            document.getElementById('btnPiocher').disabled = true;
+            setTimeout(() => {
+              document.getElementById('game').style.display = 'none';
+              document.getElementById('end-view').style.display = 'block';
+            }, 1000);
+          }
+        }
       }
-
-      const card1Shape = card1.shape;
-      const card1Color = card1.color;
-      // Supposons que card1Shape contienne la valeur, par exemple, "hearts"
-      const firstLetter = card1Shape.charAt(0).toUpperCase(); // Obtenez la première lettre en majuscule
-      const restOfString = card1Shape.slice(1); // Obtenez le reste de la chaîne
-      const card1ShapeCapitalized = firstLetter + restOfString; // Concaténez-les
-
-      const card1Image = 'card' + card1ShapeCapitalized + card1Value + '.png';
-      document.getElementById('card1').src =
-        '../../src/assets/boardgamePack_v2/PNG/Cards/' + card1Image;
-    },
-    async handleImageClick2() {
-      const dataOfServerResponse = JSON.parse(this.serverResponse);
-
-      this.score = dataOfServerResponse.score;
-
-      const card1 = dataOfServerResponse.cards[1];
-      let card1Value = card1.value;
-
-      switch (card1Value) {
-        case 11:
-          card1Value = 'J';
-          break;
-        case 12:
-          card1Value = 'Q';
-          break;
-        case 13:
-          card1Value = 'K';
-          break;
-        case 14:
-          card1Value = 'A';
-          break;
-        // Ajoutez d'autres cas au besoin
-      }
-
-      const card1Shape = card1.shape;
-      const card1Color = card1.color;
-      // Supposons que card1Shape contienne la valeur, par exemple, "hearts"
-      const firstLetter = card1Shape.charAt(0).toUpperCase(); // Obtenez la première lettre en majuscule
-      const restOfString = card1Shape.slice(1); // Obtenez le reste de la chaîne
-      const card1ShapeCapitalized = firstLetter + restOfString; // Concaténez-les
-
-      const card1Image = 'card' + card1ShapeCapitalized + card1Value + '.png';
-      document.getElementById('card2').src =
-        '../../src/assets/boardgamePack_v2/PNG/Cards/' + card1Image;
     },
     async drawTwoCards() {
       await this.fetchServerData();
@@ -170,6 +203,22 @@ export default defineComponent({
       document.getElementById('card2').src =
         '../../src/assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png';
       this.tour++;
+      if (this.card1 != true || this.card2 != true) {
+        document.getElementById;
+      }
+      this.card1 = false;
+      this.card2 = false;
+
+      this.card1Clickable = true;
+      this.card2Clickable = true;
+      document.getElementById('btnPiocher').disabled = true;
+    },
+    showRules() {
+      this.showRulesDialog = true;
+    },
+
+    closeRulesDialog() {
+      this.showRulesDialog = false;
     },
   },
 });

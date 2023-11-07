@@ -19,7 +19,7 @@ class GoodValueGoodColor extends BaseRule
             $scoreA = value::getScore($a->value);
             $scoreB = value::getScore($b->value);
 
-            return 2 * ($scoreA + $scoreB);
+            return - (2 * ($scoreA + $scoreB));
         }
 
         return $this->next->handle($a, $b);

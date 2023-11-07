@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import GameView from '../views/GameView.vue';
 import MenuView from '../views/MenuView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
+import Rules from '../components/Rules.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const router = createRouter({
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFoundView, // Créez une composante NotFoundView pour la page "Not Found"
+    },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: Rules,
     },
   ],
 });

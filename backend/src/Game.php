@@ -92,9 +92,9 @@ class Game
         $goodValueWrongColor = new GoodValueWrongColor();
         $goodValueGoodColor = new GoodValueGoodColor();
 
-        $wrongValueWrongColor->setNext($goodValueWrongColor);
-        $goodValueWrongColor->setNext($goodValueGoodColor);
+        $goodValueGoodColor->setNext($goodValueWrongColor);
+        $goodValueWrongColor->setNext($wrongValueWrongColor);
 
-        return $wrongValueWrongColor->handle($a, $b);
+        return $goodValueGoodColor->handle($a, $b);
     }
 }

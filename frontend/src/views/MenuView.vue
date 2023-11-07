@@ -3,11 +3,10 @@
     <div
       class="row text-center justify-content-center align-items-center vh-100"
     >
-      <div class="col-12">
+      <div class="col-12" v-if="!showRules">
         <h1>Belette</h1>
       </div>
-      <div class="col-12 mt-2">
-        <!-- Utilisez v-model pour lier l'input à la variable username -->
+      <div class="col-12 mt-2" v-if="!showRules">
         <input
           type="text"
           class="form-control text-center mx-auto w-25"
@@ -16,20 +15,29 @@
           v-model="username"
         />
       </div>
-      <div class="col-12">
+      <div class="col-12" v-if="!showRules">
         <router-link :to="'/game/' + username + '/play'">
           <button class="btn btn-primary btn-lg btn-block" @click="createGame">
             Jouer
           </button>
         </router-link>
       </div>
-      <div class="col-12">
+      <div class="col-12" v-if="!showRules">
         <button class="btn btn-primary btn-lg btn-block">
           Voir classement
         </button>
       </div>
       <div class="col-12">
-        <button class="btn btn-primary btn-lg btn-block">Règles</button>
+        <button
+          class="btn btn-primary btn-lg btn-block"
+          @click="showRules = !showRules"
+          v-if="!showRules"
+        >
+          Règles
+        </button>
+        <div id="componentContainer">
+          <Rules v-if="showRules" @close-rules="showRules = false" />
+        </div>
       </div>
     </div>
   </div>
@@ -38,12 +46,18 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Rules from '../components/Rules.vue';
 
 export default defineComponent({
   name: 'MenuView',
+  components: {
+    Rules,
+  },
   setup() {
     const serverResponse = ref('');
     const username = ref('');
+
+    const showRules = ref(false);
 
     const router = useRouter();
 
@@ -79,7 +93,8 @@ export default defineComponent({
     return {
       serverResponse,
       createGame,
-      username, // Renvoyez la variable username
+      username,
+      showRules,
     };
   },
 });
