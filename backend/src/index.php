@@ -181,6 +181,27 @@ $app->get("/game/{username}/stop", function (Request $request, Response $respons
     return $response;
 });
 
+$app->get("/scoreboard", function (Request $request, Response $response, array $args) {
+    $scoreboard  = new ScoreboardDAO();
+    $score = $scoreboard->findAll();
+
+    $response->getBody()->write(json_encode($score)); 
+
+    $response = $response->withHeader("Content-Type", "application/json");
+
+    return $response;
+});
+
+$app->get("/leaderboard", function (Request $request, Response $response, array $args) {
+    $scoreboard  = new ScoreboardDAO();
+    $score = $scoreboard->findTopThree();
+
+    $response->getBody()->write(json_encode($score)); 
+
+    $response = $response->withHeader("Content-Type", "application/json");
+
+    return $response;
+});
 
 // Lance l'application Slim
 $app->run();

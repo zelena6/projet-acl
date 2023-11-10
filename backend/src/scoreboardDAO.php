@@ -41,11 +41,13 @@ class ScoreboardDAO
     public function findTopThree(): array
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("SELECT username, score, (SELECT count(*) FROM scoreboard s2 WHERE s2.username < s.username) + 1 as row FROM scoreboard s ORDER BY score DESC LIMIT 3");
+        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score DESC LIMIT 3");
         $res = $stmt->execute();
         $resu = [];
+        $i = 0;
         while ($arr = $res->fetchArray(SQLITE3_ASSOC)) {
-            $resu[$arr["row"]] = ["username" => $arr["username"], "score" => $arr["score"]];
+            $resu[$i] = ["rank" => $i, "username" => $arr["username"], "sore" => $arr["score"]];
+            $i += 1;
         }
         return $resu;
     }
@@ -58,12 +60,13 @@ class ScoreboardDAO
     public function findAll(): array
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("SELECT username, score, ROW_NUMBER() row FROM scoreboard s ORDER BY score DESC");
+        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score DESC");
         $res = $stmt->execute();
         $resu = [];
+        $i = 0;
         while ($arr = $res->fetchArray(SQLITE3_ASSOC)) {
-            print_r($arr);
-            // $resu[$arr["row"]] = ["username" => $arr["username"], "score" => $arr["score"]];
+             $resu[$i] = ["rank" => $i, "username" => $arr["username"], "sore" => $arr["score"]];
+            $i += 1;
         }
         return $resu;
     }
