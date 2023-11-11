@@ -185,7 +185,7 @@ $app->get("/scoreboard", function (Request $request, Response $response, array $
     $scoreboard  = new ScoreboardDAO();
     $score = $scoreboard->findAll();
 
-    $response->getBody()->write(json_encode($score)); 
+    $response->getBody()->write(json_encode($score));
 
     $response = $response->withHeader("Content-Type", "application/json");
 
@@ -196,7 +196,7 @@ $app->get("/leaderboard", function (Request $request, Response $response, array 
     $scoreboard  = new ScoreboardDAO();
     $score = $scoreboard->findTopThree();
 
-    $response->getBody()->write(json_encode($score)); 
+    $response->getBody()->write(json_encode($score));
 
     $response = $response->withHeader("Content-Type", "application/json");
 

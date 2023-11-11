@@ -24,9 +24,11 @@
         </router-link>
       </div>
       <div class="col-12" v-if="!showRules">
-        <button class="btn btn-primary btn-lg btn-block">
-          Voir classement
-        </button>
+        <router-link :to="'/scoreboard'">
+          <button class="btn btn-primary btn-lg btn-block">
+            Voir classement
+          </button>
+        </router-link>
       </div>
       <div class="col-12">
         <button

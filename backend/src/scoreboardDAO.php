@@ -65,7 +65,7 @@ class ScoreboardDAO
         $resu = [];
         $i = 0;
         while ($arr = $res->fetchArray(SQLITE3_ASSOC)) {
-             $resu[$i] = ["rank" => $i, "username" => $arr["username"], "sore" => $arr["score"]];
+            $resu[$i] = ["rank" => $i, "username" => $arr["username"], "score" => $arr["score"]];
             $i += 1;
         }
         return $resu;

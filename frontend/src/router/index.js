@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import GameView from '../views/GameView.vue';
 import MenuView from '../views/MenuView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
+import ScoreboardView from '../views/ScoreboardView.vue';
 import Rules from '../components/Rules.vue';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/rules',
       name: 'rules',
       component: Rules,
+    },
+    {
+      path: '/scoreboard',
+      name: 'scoreboard',
+      component: ScoreboardView,
     },
   ],
 });

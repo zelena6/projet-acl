@@ -76,7 +76,9 @@
       <h4>Score : {{ score }}</h4>
     </div>
     <router-link :to="'/'">
-      <button class="btn btn-primary btn-lg btn-block">Continuer</button>
+      <button class="btn btn-primary btn-lg btn-block" @click="saveGame">
+        Continuer
+      </button>
     </router-link>
   </div>
 </template>
@@ -86,6 +88,7 @@ import { defineComponent } from 'vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import RulesDialog from '../components/Rules.vue';
+import router from '../router';
 
 export default defineComponent({
   name: 'GameView',
@@ -126,6 +129,7 @@ export default defineComponent({
           console.error('Erreur de connexion !');
           console.error(error);
           retries--;
+          console.clear();
         }
       }
     };
@@ -140,7 +144,34 @@ export default defineComponent({
   },
 
   methods: {
-    handleAbandonnerClick() {},
+    handleAbandonnerClick() {
+      // rediriger vers la page d'accueil
+      router.back();
+    },
+
+    saveGame() {
+      fetch('http://localhost:8888/game/' + this.username + '/stop', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Partie sauvegardée !');
+            return response.text();
+          } else {
+            throw new Error('Erreur de connexion !');
+          }
+        })
+        .then((data) => {
+          // Traitez les données si nécessaire
+        })
+        .catch((error) => {
+          console.error('Erreur de connexion !');
+          console.error(error);
+        });
+    },
 
     async handleImageClick(cardNumber) {
       if (this.tour <= 5 && this['card' + cardNumber + 'Clickable']) {
