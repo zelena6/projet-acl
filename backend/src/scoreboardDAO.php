@@ -41,7 +41,7 @@ class ScoreboardDAO
     public function findTopThree(): array
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score DESC LIMIT 3");
+        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score ASC LIMIT 3");
         $res = $stmt->execute();
         $resu = [];
         $i = 0;
@@ -60,7 +60,7 @@ class ScoreboardDAO
     public function findAll(): array
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score DESC");
+        $stmt = $db->prepare("SELECT username, score FROM scoreboard ORDER BY score ASC");
         $res = $stmt->execute();
         $resu = [];
         $i = 0;

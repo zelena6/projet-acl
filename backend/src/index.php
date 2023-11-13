@@ -164,6 +164,8 @@ $app->get("/game/{username}/stop", function (Request $request, Response $respons
         }
         $games = unserialize($data);
     }
+    $game = $games[$username];
+    $game->saveScore();
     unset($games[$username]);
 
     $resource = fopen("games.txt", "w");
