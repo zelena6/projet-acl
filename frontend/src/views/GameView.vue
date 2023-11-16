@@ -3,8 +3,8 @@
     <div class="container text-center align-items mt-3">
       <button
         id="btnRegle"
-        class="btn btn-primary btn-lg"
-        style="margin-bottom: 15%"
+        class="btn btn-success btn-lg"
+        style="margin-top: 15%"
         @click="showRulesDialog = true"
         v-if="!showRulesDialog"
       >
@@ -59,7 +59,7 @@
         <div class="col">
           <button
             id="btnPiocher"
-            class="btn btn-primary btn-lg"
+            class="btn btn-success btn-lg"
             @click="drawTwoCards"
             :disabled="true"
           >
@@ -76,7 +76,7 @@
       <h4>Score : {{ score }}</h4>
     </div>
     <router-link :to="'/'">
-      <button class="btn btn-primary btn-lg btn-block" @click="saveGame">
+      <button class="btn btn-success btn-lg btn-block" @click="saveGame">
         Continuer
       </button>
     </router-link>

@@ -4,7 +4,8 @@
       class="row text-center justify-content-center align-items-center vh-100"
     >
       <div class="col-12" v-if="!showRules">
-        <h1>Belette</h1>
+        <img src="../assets/logo2.png" alt="belette" height="150" width="150" />
+        <h1 style="font-weight: bold">Belette</h1>
       </div>
       <div class="col-12 mt-2" v-show="!showRules">
         <input
@@ -18,21 +19,21 @@
       </div>
       <div class="col-12" v-if="!showRules">
         <router-link :to="'/game/' + username + '/play'">
-          <button class="btn btn-primary btn-lg btn-block" @click="startGame">
+          <button class="btn btn-success btn-lg btn-block" @click="startGame">
             Jouer
           </button>
         </router-link>
       </div>
       <div class="col-12" v-if="!showRules">
         <router-link :to="'/scoreboard'">
-          <button class="btn btn-primary btn-lg btn-block">
+          <button class="btn btn-success btn-lg btn-block">
             Voir classement
           </button>
         </router-link>
       </div>
       <div class="col-12">
         <button
-          class="btn btn-primary btn-lg btn-block"
+          class="btn btn-success btn-lg btn-block"
           @click="showRules = !showRules"
           v-if="!showRules"
         >

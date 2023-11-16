@@ -1,5 +1,5 @@
 <template>
-  <div id="rulesDialog" class="modal-dialog">
+  <div id="rulesDialog" class="modalModif">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title">Règles du jeu de cartes</h2>
@@ -34,11 +34,27 @@
         </ul>
       </div>
       <div class="modal-footer">
-        <button @click="closeDialog" class="btn btn-primary">Fermer</button>
+        <button @click="closeDialog" class="btn btn-danger">Fermer</button>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+.modalModif {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: aliceblue;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  margin-top: 10%;
+  box-shadow: 0 0 10px black;
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+</style>
 
 <script>
 export default {
