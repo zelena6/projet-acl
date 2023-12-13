@@ -18,5 +18,8 @@ interface Handler
      * @param Card $a La première carte
      * @param Card $b La deuxième carte
      */
+    /* @ requires $a != null && $b != null;
+         ensures (\old($a) == a && \old($b) == b);
+     @ */
     function handle(Card $a, Card $b);
 }

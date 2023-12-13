@@ -36,6 +36,7 @@ class Card
      * 
      * @return  Color   the color of the card
      */
+    /* @ pure @ */
     function getColor(): Color
     {
         return $this->color;
@@ -47,6 +48,7 @@ class Card
      * @param   Color   the new color of the card
      * @return  void
      */
+    /* @ requires $color != null; */
     function setColor(Color $color): void
     {
         $this->color = $color;
@@ -57,6 +59,7 @@ class Card
      * 
      * @return  Shape   the shape of the card
      */
+    /* @ pure @ */
     function getShape(): Shape
     {
         return $this->shape;
@@ -68,6 +71,7 @@ class Card
      * @param   Shape   the new shape of the card
      * @return  void
      */
+    /* @ requires $shape != null; */
     function setShape(Shape $shape): void
     {
         $this->shape = $shape;
@@ -78,6 +82,7 @@ class Card
      * 
      * @return  Value   the value of the card
      */
+    /* @ pure @ */
     function getValue(): Value
     {
         return $this->value;
@@ -89,6 +94,7 @@ class Card
      * @param   Value   the new valeu of the card
      * @return  void 
      */
+    /* @ requires $color != value; */
     function setValue(Value $value): void
     {
         $this->value = $value;

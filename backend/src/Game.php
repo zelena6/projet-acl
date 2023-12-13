@@ -12,7 +12,7 @@ class Game
     public int $turn;
     public int $score;
     public ?Player $player;
-    public Deck $deck;
+    /* @ non_null */ public Deck $deck;
 
     // Constructor
     public function __construct(?Player $player = null)
@@ -27,6 +27,7 @@ class Game
 
 
     // Getter for 'turn'
+    /* @ pure @ */
     public function getTurn(): int
     {
         return $this->turn;
@@ -39,6 +40,7 @@ class Game
     }
 
     // Getter for 'score'
+    /* @ pure @ */
     public function getScore(): int
     {
         return $this->score;
@@ -53,6 +55,7 @@ class Game
     /**
      * Getteur du joueur
      */
+    /* @ pure @ */
     public function getPlayer(): Player
     {
         return $this->player;
@@ -61,6 +64,9 @@ class Game
     /**
      * Setteur du joueur
      */
+    /* @ requires $player != null;
+         ensures (\old($player) == $player); 
+    @ */
     public function setPlayer(Player $player): void
     {
         $this->player = $player;
@@ -69,6 +75,7 @@ class Game
     /**
      * Sauvegarde le score dans la base de données
      */
+    /* @ pure @ */
     public function saveScore(): void
     {
         $db = new SQLite3("database.db");
@@ -86,6 +93,9 @@ class Game
      * 
      * @return int Le score
      */
+    /* @ requires $a != null && $b != null;
+         ensures (\old($a) == $a && \old($b) == $b);
+     @ */
     public function calculateScore(Card $a, Card $b)
     {
         $wrongValueWrongColor = new WrongValueWrongColor();

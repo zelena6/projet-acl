@@ -36,6 +36,7 @@ class GameManager
     /**
      * Getteur des parties
      */
+    /* @ pure @ */
     public function getGames()
     {
         return $this->games;
@@ -46,6 +47,8 @@ class GameManager
      * 
      * @param $games Les parties
      */
+    /* @ ensure (\old($games) = $games)
+     @ */
     public function setGames($games)
     {
         $this->games = $games;

@@ -6,7 +6,7 @@
 class Deck
 {
     /** @var array Tableau de cartes dans le paquet. */
-    public array $cards;
+    /* @ non_null @*/ public array $cards;
 
     /**
      * Constructeur de la classe Deck.
@@ -26,6 +26,7 @@ class Deck
      *
      * @return array Le tableau de cartes dans le paquet.
      */
+    /* @ pure @ */
     public function getCards(): array
     {
         return $this->cards;
@@ -36,6 +37,9 @@ class Deck
      *
      * @param array $cards Le tableau de cartes à définir dans le paquet.
      */
+    /* @ requires $cards != null;
+         ensures (\old($cards) == $cards); 
+    @ */
     public function setCards(array $cards): void
     {
         $this->cards = $cards;

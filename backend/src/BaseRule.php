@@ -20,5 +20,8 @@ abstract class BaseRule implements Handler
         $this->next = $next;
     }
 
+    /* @ requires $a != null && $b != null;
+         ensures (\old($a) == $a && \old($b) == $b);
+    @ */
     abstract function handle(Card $a, Card $b);
 }

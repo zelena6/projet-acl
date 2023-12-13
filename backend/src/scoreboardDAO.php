@@ -23,6 +23,9 @@ class ScoreboardDAO
      * @param Player $player Le joueur à insérer.
      * @param int $score Le score à enregistrer.
      */
+    /* @ requires $player != null;
+         ensures (\old($player) == $player);
+    @ */
     public function insert(Player $player, int $score)
     {
         $db = new SQLite3("database.db");
@@ -38,6 +41,7 @@ class ScoreboardDAO
      *
      * @return array Un tableau associatif contenant les trois meilleurs scores.
      */
+    /* @ pure @ */
     public function findTopThree(): array
     {
         $db = new SQLite3("database.db");
@@ -57,6 +61,7 @@ class ScoreboardDAO
      *
      * @return array Un tableau associatif contenant tous les scores.
      */
+    /* @ pure @ */
     public function findAll(): array
     {
         $db = new SQLite3("database.db");
