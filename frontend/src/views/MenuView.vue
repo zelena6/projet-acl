@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div
-      class="row text-center justify-content-center align-items-center vh-100"
-    >
+    <div class="row text-center justify-content-center align-items-center vh-100">
       <div class="col-12" v-if="!showRules">
         <img src="../assets/logo2.png" alt="belette" height="150" width="150" />
         <h1 style="font-weight: bold">Belette</h1>
@@ -15,11 +13,16 @@
           placeholder="Pseudo"
           v-model="username"
           @keyup.enter="startGame"
+          maxlength="10"
         />
       </div>
       <div class="col-12" v-if="!showRules">
         <router-link :to="'/game/' + username + '/play'">
-          <button class="btn btn-success btn-lg btn-block" @click="startGame">
+          <button
+            class="btn btn-success btn-lg btn-block"
+            @click="startGame"
+            :disabled="username === ''"
+          >
             Jouer
           </button>
         </router-link>
@@ -66,7 +69,14 @@ export default defineComponent({
     const router = useRouter();
 
     const startGame = () => {
+      // Check if the username is empty before proceeding
+      if (username.value === '') {
+        console.log('pseudo vide');
+        return;
+      }
+
       const usernameValue = username.value;
+
       router.push({ name: 'game', params: { username: usernameValue } });
 
       fetch('http://localhost:8888/game', {

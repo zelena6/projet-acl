@@ -1,36 +1,30 @@
 <template>
-  <div id="game" style="display: ">
+  <div id="game" style="display: ; width: 25vw; height: 80vh;">
     <div class="container text-center align-items mt-3">
       <button
         id="btnRegle"
-        class="btn btn-success btn-lg"
-        style="margin-top: 15%"
+        class="btn btn-success btn-lg mb-5"
         @click="showRulesDialog = true"
         v-if="!showRulesDialog"
       >
         Règles du jeu
       </button>
-      <RulesDialog
-        v-if="showRulesDialog"
-        @close-rules="showRulesDialog = false"
-      />
     </div>
+      
     <div
-      class="container text-center align-items mt-3"
+      class="container text-center align-items"
       v-show="!showRulesDialog"
     >
+    <button class="btn btn-danger btn-lg mb-5" @click="handleAbandonnerClick">
+            Abandonner
+    </button>
       <!-- Header Row -->
       <div class="row text-center align-items-center mb-5">
         <div class="col">
-          <h4>Tour {{ tour }}</h4>
+          <h4>Tour : {{ tour }}</h4>
         </div>
         <div class="col">
-          <h4>{{ score }}</h4>
-        </div>
-        <div class="col">
-          <button class="btn btn-danger" @click="handleAbandonnerClick">
-            Abandonner
-          </button>
+          <h4>Score : {{ score }}</h4>
         </div>
       </div>
 
@@ -65,10 +59,20 @@
           >
             Piocher 2
           </button>
+          <button
+          id="btnFinPartie"
+            class="btn btn-success btn-lg"
+            style="display: none;"
+          >Continuer</button>
         </div>
       </div>
     </div>
   </div>
+  <RulesDialog
+      v-if="showRulesDialog"
+      @close-rules="showRulesDialog = false"
+      class="centered-dialog" 
+    />
 
   <div id="end-view" style="display: none">
     <div class="container text-center align-items mt-3 mb-3">
@@ -80,9 +84,21 @@
         Continuer
       </button>
     </router-link>
+    <router-link :to="'/game/'+username+'/play'">
+      <button class="btn btn-success btn-lg btn-block" @click="rejouer">
+        Rejouer
+      </button>
+    </router-link>
   </div>
 </template>
-
+<style scoped>
+.centered-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
 <script>
 import { defineComponent } from 'vue';
 import { ref } from 'vue';
@@ -101,6 +117,7 @@ export default defineComponent({
       card1Clickable: true,
       card2Clickable: true,
       showRulesDialog: false,
+      tourMax: 5,
     };
   },
   components: {
@@ -132,10 +149,10 @@ export default defineComponent({
           console.clear();
         }
       }
+      console.log('serverResponse.value', serverResponse.value);
     };
 
     fetchServerData();
-
     return {
       serverResponse,
       username,
@@ -145,7 +162,6 @@ export default defineComponent({
 
   methods: {
     handleAbandonnerClick() {
-      // rediriger vers la page d'accueil
       router.back();
     },
 
@@ -158,14 +174,10 @@ export default defineComponent({
       })
         .then((response) => {
           if (response.ok) {
-            console.log('Partie sauvegardée !');
             return response.text();
           } else {
             throw new Error('Erreur de connexion !');
           }
-        })
-        .then((data) => {
-          // Traitez les données si nécessaire
         })
         .catch((error) => {
           console.error('Erreur de connexion !');
@@ -221,11 +233,18 @@ export default defineComponent({
           document.getElementById('btnPiocher').disabled = false;
 
           if (this.tour === 5) {
-            document.getElementById('btnPiocher').disabled = true;
-            setTimeout(() => {
+            document.getElementById('btnFinPartie').style.display = '';
+            document.getElementById('btnPiocher').style.display = 'none';
+            document.getElementById('btnFinPartie').onclick = () => {
               document.getElementById('game').style.display = 'none';
               document.getElementById('end-view').style.display = 'block';
-            }, 1000);
+            };
+
+            // document.getElementById('btnPiocher').disabled = true;
+            // setTimeout(() => {
+            //   document.getElementById('game').style.display = 'none';
+            //   document.getElementById('end-view').style.display = 'block';
+            // }, 1000);
           }
         }
       }
@@ -236,7 +255,10 @@ export default defineComponent({
         '../../src/assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png';
       document.getElementById('card2').src =
         '../../src/assets/boardgamePack_v2/PNG/Cards/cardBack_blue3.png';
-      this.tour++;
+      while (this.tour < 5) {
+        this.tour++;
+        break;
+      }
       if (this.card1 != true || this.card2 != true) {
         document.getElementById;
       }
@@ -253,6 +275,20 @@ export default defineComponent({
 
     closeRulesDialog() {
       this.showRulesDialog = false;
+    },
+    rejouer() {
+      document.getElementById('game').style.display = '';
+      document.getElementById('end-view').style.display = 'none';
+      this.tour = 1;
+      this.score = 0;
+      this.card1 = false;
+      this.card2 = false;
+      this.card1Clickable = true;
+      this.card2Clickable = true;
+      document.getElementById('btnPiocher').disabled = true;
+      document.getElementById('btnPiocher').style.display = '';
+      document.getElementById('btnFinPartie').style.display = 'none';
+
     },
   },
 });
