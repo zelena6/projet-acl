@@ -28,9 +28,15 @@ class ScoreboardDAO
     @ */
     public function insert(Player $player, int $score)
     {
-        $db = new SQLite3("database.db");
-        $stmt = $db->prepare("INSERT INTO scoreboard (username, score) VALUES (?, ?)");
         $username = $player->getUsername();
+
+        $db = new SQLite3("database.db");
+        $stmt = $db->prepare("DELETE FROM scoreboard WHERE username = ?");
+        $stmt->bindParam(1, $username, SQLITE3_TEXT);
+        $stmt->execute();
+
+
+        $stmt = $db->prepare("INSERT INTO scoreboard (username, score) VALUES (?, ?)");
         $stmt->bindParam(1, $username, SQLITE3_TEXT);
         $stmt->bindParam(2, $score, SQLITE3_INTEGER);
         $stmt->execute();

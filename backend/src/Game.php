@@ -79,6 +79,10 @@ class Game
     public function saveScore(): void
     {
         $db = new SQLite3("database.db");
+        $stmt = $db->prepare("DELETE FROM scoreboard WHERE username = ?");
+        $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
+        $stmt->execute();
+
         $stmt = $db->prepare("insert into scoreboard (username, score) values (?, ?)");
         $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
         $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
