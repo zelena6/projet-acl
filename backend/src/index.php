@@ -114,6 +114,7 @@ $app->get("/game/{username}/play", function (Request $request, Response $respons
 
         $response->getBody()->write(json_encode(
             [
+                "turn" => $game->turn,
                 "cards" => [
                     $game->deck->cards[0],
                     $game->deck->cards[1]
