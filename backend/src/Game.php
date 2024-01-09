@@ -87,8 +87,7 @@ class Game
         $i = 0;
         $arr = $res->fetchArray(SQLITE3_ASSOC);
 
-        print("a" . $arr["score"]);
-        print("b" . $this->score);
+   
         if ($arr["score"] > $this->score) {
             print($arr["score"]);
             print($this->score);
@@ -101,7 +100,14 @@ class Game
             $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
             $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
             $stmt->execute();
+        } else if (empty($arr["score"])) {
+            $stmt = $db->prepare("insert into scoreboard (username, score) values (?, ?)");
+            $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
+            $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
+            $stmt->execute();
         }
+
+
     }
 
     /**
