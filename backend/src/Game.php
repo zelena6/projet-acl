@@ -79,14 +79,29 @@ class Game
     public function saveScore(): void
     {
         $db = new SQLite3("database.db");
-        $stmt = $db->prepare("DELETE FROM scoreboard WHERE username = ?");
+        $stmt = $db->prepare("SELECT score FROM scoreboard where username = ?");
         $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
-        $stmt->execute();
 
-        $stmt = $db->prepare("insert into scoreboard (username, score) values (?, ?)");
-        $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
-        $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
-        $stmt->execute();
+        $res = $stmt->execute();
+        $resu = [];
+        $i = 0;
+        $arr = $res->fetchArray(SQLITE3_ASSOC);
+
+        print("a" . $arr["score"]);
+        print("b" . $this->score);
+        if ($arr["score"] > $this->score) {
+            print($arr["score"]);
+            print($this->score);
+            // $db = new SQLite3("database.db");
+            $stmt = $db->prepare("DELETE FROM scoreboard WHERE username = ?");
+            $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
+            $stmt->execute();
+
+            $stmt = $db->prepare("insert into scoreboard (username, score) values (?, ?)");
+            $stmt->bindParam(1, $this->player->userName, SQLITE3_TEXT);
+            $stmt->bindParam(2, $this->score, SQLITE3_INTEGER);
+            $stmt->execute();
+        }
     }
 
     /**
